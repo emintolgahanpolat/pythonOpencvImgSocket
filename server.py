@@ -12,21 +12,27 @@ serv = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 serv.bind(ADDR)
 serv.listen(5)
 
+def frameShow(imageString):
+  frame = numpy.fromstring (imageString,dtype=numpy.uint8)
+  frame = frame.reshape (480,640,3)
+  cv2.imshow('server',frame)  
+  
 print 'listening ...'
+imageString=""
 
 while True:
   conn, addr = serv.accept()
   print 'client connected ... ', addr
 
-  s=""
+
   while True:
     data = conn.recv(BUFSIZE)
     if not data: break
-    s+=data
-  frame = numpy.fromstring (s,dtype=numpy.uint8)
-  frame = frame.reshape (480,640,3)
-  cv2.imshow('server',frame)
-  s=""
+    imageString+=data
+
+  frameShow(imageString)
+  
+  imageString=""
 
   if cv2.waitKey(1) & 0xFF == ord ('q'):
     break
