@@ -14,7 +14,7 @@ serv.listen(5)
 
 def frameShow(imageString):
   frame = numpy.fromstring (imageString,dtype=numpy.uint8)
-  frame = frame.reshape (480,640,3)
+  frame = frame.reshape (480,640,3) # client den alinan deger yazilacak
   cv2.imshow('server',frame)  
   
 print 'listening ...'
