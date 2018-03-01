@@ -4,7 +4,7 @@ import numpy as np
 
 cap = cv2.VideoCapture(0) 
 
-HOST = 'localhost'
+HOST = 'localhost' # gonderilecek bilgisayarin ip adresi
 PORT = 9876
 ADDR = (HOST,PORT)
 BUFSIZE = 4096
