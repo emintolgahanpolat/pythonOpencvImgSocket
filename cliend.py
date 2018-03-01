@@ -1,6 +1,7 @@
 import socket
 import cv2
 import numpy as np
+
 cap = cv2.VideoCapture(0) 
 
 HOST = 'localhost'
@@ -8,10 +9,7 @@ PORT = 9876
 ADDR = (HOST,PORT)
 BUFSIZE = 4096
 
-while(True):
-
-    ret, frame = cap.read()
-
+def frameSend(frame):
     d=frame.flatten()
     s=d.tostring()
 
@@ -23,6 +21,12 @@ while(True):
 
     client.close()
 
+
+while(True):
+
+    ret, frame = cap.read()
+    frameSend(frame)
+   
     cv2.imshow('client',frame)
     if cv2.waitKey(1) & 0xFF == ord('q'): 
         break
