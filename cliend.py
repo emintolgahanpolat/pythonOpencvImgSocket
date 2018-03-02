@@ -26,7 +26,7 @@ while(True):
 
     ret, frame = cap.read()
     frame = cv2.resize(frame,None,fx=1, fy=1, interpolation = cv2.INTER_CUBIC) # resize fx ve fy orani 0-1 arasi deger alir
-    height,width,layer=img.shape
+    height,width,layer=frame.shape
     print height,width,layer #burdaki degerler server.py ye yazilacak
     frameSend(frame)
    
