@@ -28,7 +28,10 @@ while(True):
     frame = cv2.resize(frame,None,fx=1, fy=1, interpolation = cv2.INTER_CUBIC) # resize fx ve fy orani 0-1 arasi deger alir
     height,width,layer=frame.shape
     print height,width,layer #burdaki degerler server.py ye yazilacak
-    frameSend(frame)
+    try:
+        frameSend(frame)
+    except:
+        print "baglanmadi"
    
     cv2.imshow('client',frame)
     if cv2.waitKey(1) & 0xFF == ord('q'): 
